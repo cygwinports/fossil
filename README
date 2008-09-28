@@ -1,0 +1,57 @@
+fossil
+------------------------------------------
+Fossil is a new distributed software revision control system that 
+includes an integrated wiki and an integrated bug-tracking system all in 
+a single, easy-to-use, stand-alone executable.
+
+Runtime requirements:
+  cygwin-1.5.25-15
+  libsqlite3_0-3.6.3-1
+  zlib-1.2.3-2
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-20080624-2
+  cygport-0.4.1-1
+  gawk-3.1.6-1
+  gcc-core-3.4.4-3
+  make-3.81-1
+  tcl-8.4.19-2
+
+Canonical website:
+  http://www.fossil-scm.org/
+
+Canonical download:
+  http://www.fossil-scm.org/
+
+-------------------------------------------
+
+Build instructions:
+  unpack fossil-20080927-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./fossil-20080927-X.cygport all
+
+This will create:
+  /usr/src/fossil-20080927-X-src.tar.bz2
+  /usr/src/fossil-20080927-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/fossil.exe
+  /usr/share/doc/fossil-20080927/COPYRIGHT-GPL2.txt
+  /usr/share/doc/fossil-20080927/TODO.txt
+
+------------------
+
+Port Notes:
+
+----- version 20080927-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/

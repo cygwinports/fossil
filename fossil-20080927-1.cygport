@@ -1,0 +1,21 @@
+FOSSIL_REV="dab84c22ee"
+inherit fossil tcl
+
+DESCRIPTION="Distributed revision control, wiki, and bug-tracking system"
+HOMEPAGE="http://www.fossil-scm.org/"
+FOSSIL_URI="http://www.fossil-scm.org/"
+PATCH_URI="20080927-browser.patch
+           20080927-system-sqlite3.patch"
+
+DISTCLEANFILES="src/sqlite3.*"
+
+src_compile() {
+	cd ${B}
+	make -f ${S}/Makefile SRCDIR=${S}/src
+}
+
+src_install() {
+	cd ${B}
+	dobin fossil.exe
+}
+DOCS="COPYRIGHT-GPL2.txt"

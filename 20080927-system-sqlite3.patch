@@ -1,0 +1,33 @@
+--- origsrc/fossil/src/cgi.c	2008-09-28 04:02:29.000000000 -0500
++++ src/fossil/src/cgi.c	2008-09-28 04:25:38.579129400 -0500
+@@ -72,7 +72,7 @@
+ ** Provide a reliable implementation of a caseless string comparison
+ ** function.
+ */
+-#define stricmp sqlite3StrICmp
++#define stricmp strcasecmp
+ extern int sqlite3StrICmp(const char*, const char*);
+ 
+ /*
+--- origsrc/fossil/src/main.mk	2008-09-28 04:02:29.000000000 -0500
++++ src/fossil/src/main.mk	2008-09-28 04:24:16.797879400 -0500
+@@ -239,8 +239,8 @@
+ 	awk '{ printf "#define MANIFEST_VERSION \"[%.10s]\"\n", $$1}'  $(SRCDIR)/../manifest.uuid >>VERSION.h
+ 	awk '$$1=="D"{printf "#define MANIFEST_DATE \"%s %s\"\n", substr($$2,1,10),substr($$2,12)}'  $(SRCDIR)/../manifest >>VERSION.h
+ 
+-$(APPNAME):	headers $(OBJ) sqlite3.o th.o th_lang.o
+-	$(TCC) -o $(APPNAME) $(OBJ) sqlite3.o th.o th_lang.o $(LIB)
++$(APPNAME):	headers $(OBJ) th.o th_lang.o
++	$(TCC) -o $(APPNAME) $(OBJ) th.o th_lang.o -lsqlite3 $(LIB)
+ 
+ # This rule prevents make from using its default rules to try build
+ # an executable named "manifest" out of the file named "manifest.c"
+@@ -256,7 +256,7 @@
+ page_index.h: $(TRANS_SRC) mkindex
+ 	./mkindex $(TRANS_SRC) >$@
+ headers:	page_index.h makeheaders $(TRANS_SRC) VERSION.h
+-	./makeheaders  add_.c:add.h admin_.c:admin.h bag_.c:bag.h blob_.c:blob.h branch_.c:branch.h browse_.c:browse.h cgi_.c:cgi.h checkin_.c:checkin.h checkout_.c:checkout.h clearsign_.c:clearsign.h clone_.c:clone.h comformat_.c:comformat.h configure_.c:configure.h construct_.c:construct.h content_.c:content.h db_.c:db.h delta_.c:delta.h deltacmd_.c:deltacmd.h descendants_.c:descendants.h diff_.c:diff.h diffcmd_.c:diffcmd.h doc_.c:doc.h encode_.c:encode.h file_.c:file.h http_.c:http.h info_.c:info.h login_.c:login.h main_.c:main.h manifest_.c:manifest.h md5_.c:md5.h merge_.c:merge.h merge3_.c:merge3.h my_page_.c:my_page.h name_.c:name.h pivot_.c:pivot.h pqueue_.c:pqueue.h printf_.c:printf.h rebuild_.c:rebuild.h report_.c:report.h rss_.c:rss.h schema_.c:schema.h setup_.c:setup.h sha1_.c:sha1.h shun_.c:shun.h stat_.c:stat.h style_.c:style.h sync_.c:sync.h tag_.c:tag.h tagview_.c:tagview.h th_main_.c:th_main.h timeline_.c:timeline.h tkt_.c:tkt.h tktsetup_.c:tktsetup.h undo_.c:undo.h update_.c:update.h url_.c:url.h user_.c:user.h verify_.c:verify.h vfile_.c:vfile.h wiki_.c:wiki.h wikiformat_.c:wikiformat.h winhttp_.c:winhttp.h xfer_.c:xfer.h zip_.c:zip.h $(SRCDIR)/sqlite3.h $(SRCDIR)/th.h VERSION.h
++	./makeheaders  add_.c:add.h admin_.c:admin.h bag_.c:bag.h blob_.c:blob.h branch_.c:branch.h browse_.c:browse.h cgi_.c:cgi.h checkin_.c:checkin.h checkout_.c:checkout.h clearsign_.c:clearsign.h clone_.c:clone.h comformat_.c:comformat.h configure_.c:configure.h construct_.c:construct.h content_.c:content.h db_.c:db.h delta_.c:delta.h deltacmd_.c:deltacmd.h descendants_.c:descendants.h diff_.c:diff.h diffcmd_.c:diffcmd.h doc_.c:doc.h encode_.c:encode.h file_.c:file.h http_.c:http.h info_.c:info.h login_.c:login.h main_.c:main.h manifest_.c:manifest.h md5_.c:md5.h merge_.c:merge.h merge3_.c:merge3.h my_page_.c:my_page.h name_.c:name.h pivot_.c:pivot.h pqueue_.c:pqueue.h printf_.c:printf.h rebuild_.c:rebuild.h report_.c:report.h rss_.c:rss.h schema_.c:schema.h setup_.c:setup.h sha1_.c:sha1.h shun_.c:shun.h stat_.c:stat.h style_.c:style.h sync_.c:sync.h tag_.c:tag.h tagview_.c:tagview.h th_main_.c:th_main.h timeline_.c:timeline.h tkt_.c:tkt.h tktsetup_.c:tktsetup.h undo_.c:undo.h update_.c:update.h url_.c:url.h user_.c:user.h verify_.c:verify.h vfile_.c:vfile.h wiki_.c:wiki.h wikiformat_.c:wikiformat.h winhttp_.c:winhttp.h xfer_.c:xfer.h zip_.c:zip.h $(SRCDIR)/th.h VERSION.h
+ 	touch headers
+ headers: Makefile
+ Makefile:
