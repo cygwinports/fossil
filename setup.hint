@@ -1,5 +1,5 @@
 category: Devel
-requires: libsqlite3_0 zlib
+requires: libgcc1 libsqlite3_0 zlib0
 sdesc: "Distributed revision control, wiki, and bug-tracking system"
 ldesc: "Fossil is a new distributed software revision control system 
 that includes an integrated wiki and an integrated bug-tracking system 

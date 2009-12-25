@@ -1,0 +1,27 @@
+inherit tcl
+
+DESCRIPTION="Distributed revision control, wiki, and bug-tracking system"
+HOMEPAGE="http://www.fossil-scm.org/"
+SRC_URI="http://www.fossil-scm.org/download/fossil-src-${PV//.}.tar.gz"
+SRC_DIR="fossil-src-${PV//.}"
+PATCH_URI="20091220-browser.patch
+           20091220-system-sqlite3.patch"
+
+DISTCLEANFILES="src/sqlite3.*"
+
+src_compile() {
+	cd ${B}
+	make -f ${S}/Makefile \
+		SRCDIR=${S}/src \
+		BCC="${CC} ${CFLAGS}" \
+		TCC="${CC} ${CFLAGS}" \
+		E=".exe" \
+		LDFLAGS="-lsqlite3 ${LDFLAGS}" \
+		TCLSH=${TCLSH}
+}
+
+src_install() {
+	cd ${B}
+	dobin fossil.exe
+}
+DOCS="COPYRIGHT-GPL2.txt"
