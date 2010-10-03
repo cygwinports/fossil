@@ -5,19 +5,17 @@ includes an integrated wiki and an integrated bug-tracking system all in
 a single, easy-to-use, stand-alone executable.
 
 Runtime requirements:
-  cygwin-1.7.0-67
-  libgcc1-4.3.4-3
-  libsqlite3_0-3.6.20-1
-  zlib0-1.2.3-10
+  cygwin-1.7.7-1
+  zlib0-1.2.5-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.19.51-1
-  cygport-0.9.10-1
+  binutils-2.20.51-2
+  cygport-0.10.0-1
   gawk-3.1.7-1
-  gcc4-core-4.3.4-1
+  gcc4-core-4.5.0-1
   make-3.81-2
-  tcl-8.5.6-2
+  tcl-8.5.8-1
 
 Canonical website:
   http://www.fossil-scm.org/
@@ -28,19 +26,22 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack fossil-2009.12.20.213451-X-src.tar.bz2
+  unpack fossil-2010.09.18.155143-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./fossil-2009.12.20.213451-X.cygport all
+  cygport ./fossil-2010.09.18.155143-X.cygport all
 
 This will create:
-  /usr/src/fossil-2009.12.20.213451-X-src.tar.bz2
-  /usr/src/fossil-2009.12.20.213451-X.tar.bz2
+  /usr/src/fossil-2010.09.18.155143-X-src.tar.bz2
+  /usr/src/fossil-2010.09.18.155143-X.tar.bz2
 
 -------------------------------------------
 
 Port Notes:
+
+----- version 2010.09.18.155143-1 -----
+Version bump.
 
 ----- version 2009.12.20.213451-1 -----
 Initial release for Cygwin 1.7.
