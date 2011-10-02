@@ -11,7 +11,7 @@ PATCH_URI="20091220-browser.patch"
 
 src_compile() {
 	cd ${B}
-	make -f ${S}/Makefile \
+	make -f ${S}/Makefile.classic \
 		SRCDIR=${S}/src \
 		BCC="${CC} ${CFLAGS}" \
 		TCC="${CC} ${CFLAGS}" \
