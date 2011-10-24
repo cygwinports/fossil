@@ -14,7 +14,7 @@ src_compile() {
 	make -f ${S}/Makefile.classic \
 		SRCDIR=${S}/src \
 		BCC="${CC} ${CFLAGS}" \
-		TCC="${CC} ${CFLAGS}" \
+		TCC="${CC} ${CFLAGS} -DFOSSIL_ENABLE_SSL" \
 		E=".exe" \
 		LDFLAGS="${LDFLAGS}" \
 		TCLSH=${TCLSH}
