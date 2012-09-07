@@ -1,0 +1,31 @@
+inherit tcl
+
+NAME="fossil"
+VERSION=1.23
+TARBALL_VERSION=20120808112557
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Distributed revision control, wiki, and bug-tracking system"
+DESCRIPTION="Fossil is a new distributed software revision control system
+that includes an integrated wiki and an integrated bug-tracking system all
+in a single, easy-to-use, stand-alone executable."
+HOMEPAGE="http://www.fossil-scm.org/"
+SRC_URI="http://www.fossil-scm.org/download/fossil-src-${TARBALL_VERSION}.tar.gz"
+SRC_DIR="fossil-src-${TARBALL_VERSION}"
+PATCH_URI="20091220-browser.patch"
+
+DEBUG_PREFIX_MAPS="../src/fossil-src-${TARBALL_VERSION}"
+
+src_compile() {
+	cd ${B}
+	# not autoconf-based
+	${S}/configure --prefix=/usr --disable-internal-sqlite --with-tcl
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	dodir /usr/bin
+	cyginstall
+}
+DOCS="COPYRIGHT*.txt"

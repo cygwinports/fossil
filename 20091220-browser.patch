@@ -5,7 +5,7 @@
      zBrowser = db_get("web-browser", 0);
      if( zBrowser==0 ){
 -      static char *azBrowserProg[] = { "xdg-open", "gnome-open", "firefox" };
-+      static char *azBrowserProg[] = { "xdg-open", "gnome-open", "kde-open", "epiphany", "midori", "arora", "konqueror", "cygstart" };
++      static char *azBrowserProg[] = { "xdg-open", "gvfs-open", "kde-open", "epiphany", "midori", "arora", "konqueror", "cygstart" };
        int i;
        zBrowser = "echo";
        for(i=0; i<sizeof(azBrowserProg)/sizeof(azBrowserProg[0]); i++){
